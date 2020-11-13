@@ -9,5 +9,5 @@
 %M = Sobel('V');
 %G = EdgeMagnit(I);
 
-%Out = uint8(LinearFilter(I, M, Postproc));
+%Out = uint8(LinearFilter(I, M, Postproc)); //Absolute | Cutoff
 %figure, imshow(Out), title('Filter Applied');
