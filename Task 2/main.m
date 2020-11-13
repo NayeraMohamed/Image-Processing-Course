@@ -7,5 +7,5 @@
 %M = Sobel('V');
 %G = EdgeMagnit(I);
 
-%Out = LinearFilter(I, M, Postproc);
+%Out = uint8(LinearFilter(I, M, Postproc));
 %figure, imshow(Out), title('Filter Applied');
