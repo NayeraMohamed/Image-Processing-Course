@@ -57,7 +57,6 @@ elseif strcmp(Postproc,'absolute')==1
    for j= 1:iCols
       
            result(i,j)=abs(result(i,j));
-       
    end
 end
 end
