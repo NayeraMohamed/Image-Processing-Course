@@ -1,9 +1,9 @@
 %I = imread('I.bmp');
 %convert image to grey scale
-%I = rgb2gray(I); %apply to all except edge detection masks
-%M = MeanMask(3, 5);
+%I = rgb2gray(I);
+%M = MeanMask(3, 11);
 %M = Gauss1(Size,Sig);
-%M = Gauss2(Sig);
+%M = Gauss2(4);
 %M = LaplacianSharp();
 %M = Sobel('H');
 %M = Sobel('V');
