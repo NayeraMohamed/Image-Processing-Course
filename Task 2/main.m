@@ -60,8 +60,6 @@ elseif strcmp(Postproc,'absolute')==1
        
    end
 end
-    
-    
 end
 
 figure, imshow(result), title('Filter Applied');
