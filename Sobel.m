@@ -9,4 +9,3 @@ function M = Sobel(Mask)
     
  end
 end
-
