@@ -67,4 +67,3 @@ end
 figure, imshow(result), title('Filter Applied');
 
 end
-
