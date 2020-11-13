@@ -1,6 +1,9 @@
+%initial commit
 function Out = LinearFilter(I, Filter, Postproc) 
-g = rgb2gray(I); %need to remove this
-[iRows,iCols,z]= size(g);
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+[iRows,iCols]= size(I);
 
 %padding
 [fRows,fCols] = size(Filter);
@@ -9,10 +12,11 @@ cPadding = fix(fCols/2);
 newR=iRows+(2*rPadding);
 newC= iCols+(2*cPadding);
 temp= zeros(newR,newC );
-temp(rPadding+1:newR-rPadding,cPadding+1:newC-cPadding)=g;
+temp(rPadding+1:newR-rPadding,cPadding+1:newC-cPadding)=I;
+temp= double(temp);
 
 %convolution
-result = zeros(g);
+Out = zeros(iRows,iCols);
 
 for i = 1:iRows
     for j= 1:iCols
@@ -21,32 +25,41 @@ for i = 1:iRows
         for ii=1:fRows
               c=j;
             for jj=1:fCols
-                rSum=rSum+(temp(r,c)*Filter(ii,jj));
+                rSum = rSum+(temp(r,c)*Filter(ii,jj));
                 c=c+1;
             end
             r=r+1;
         end
-        result(i,j)=rSum;       
-    end  
+        Out(i,j)=rSum;
+        
+    end
+    
 end
 
 %cutoff...
-if strcmp(Postproc,'cutoff') ==1 
+if strcmp(Postproc,'cutoff') ==1
+    
 for i = 1:iRows
    for j= 1:iCols
-       if result(i,j)>255
-           result(i,j)=255;
-       end   
+       if Out(i,j)>255
+           Out(i,j)=255;
+       end
+       
    end
 end
-
+        
+   
  %absolute...   
-elseif strcmp(Postproc,'absolute')==1 
+elseif strcmp(Postproc,'absolute')==1
+    
  for i = 1:iRows
    for j= 1:iCols
-          result(i,j)=abs(result(i,j));
+      
+           Out(i,j)=abs(Out(i,j));
    end
- end
 end
-%need to replace result with out
+end
+
+%figure, imshow(result), title('Filter Applied');
+
 end
