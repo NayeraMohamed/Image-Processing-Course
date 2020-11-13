@@ -1,10 +1,5 @@
-%initial commit
 function Out = LinearFilter(I, Filter, Postproc) 
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-
-I= imread("Filters.png");
-g = rgb2gray(I);
+g = rgb2gray(I); %need to remove this
 [iRows,iCols,z]= size(g);
 
 %padding
@@ -31,36 +26,27 @@ for i = 1:iRows
             end
             r=r+1;
         end
-        result(i,j)=rSum;
-        
-    end
-    
+        result(i,j)=rSum;       
+    end  
 end
 
 %cutoff...
-if strcmp(Postproc,'cutoff') ==1
-    
+if strcmp(Postproc,'cutoff') ==1 
 for i = 1:iRows
    for j= 1:iCols
        if result(i,j)>255
            result(i,j)=255;
-       end
-       
+       end   
    end
 end
-        
-   
+         
  %absolute...   
-elseif strcmp(Postproc,'absolute')==1
-    
+elseif strcmp(Postproc,'absolute')==1 
  for i = 1:iRows
    for j= 1:iCols
-      
-           result(i,j)=abs(result(i,j));
+          result(i,j)=abs(result(i,j));
    end
+ end
 end
-end
-
-figure, imshow(result), title('Filter Applied');
-
+%need to replace result with out
 end
