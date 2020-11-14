@@ -15,8 +15,5 @@ for i = 1:H
             G(i,j) = 255; 
         end    
     end    
- end
-
-
 end
-
+end

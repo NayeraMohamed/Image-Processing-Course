@@ -1,10 +1,6 @@
-%initial commit
 function Out = LinearFilter(I, Filter, Postproc) 
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
 
 [iRows,iCols]= size(I);
-
 %padding
 [fRows,fCols] = size(Filter);
 rPadding= fix(fRows/2);
@@ -13,7 +9,7 @@ newR=iRows+(2*rPadding);
 newC= iCols+(2*cPadding);
 temp= zeros(newR,newC );
 temp(rPadding+1:newR-rPadding,cPadding+1:newC-cPadding)=I;
-temp= double(temp);
+temp= im2double(temp);
 
 %convolution
 Out = zeros(iRows,iCols);
@@ -30,10 +26,8 @@ for i = 1:iRows
             end
             r=r+1;
         end
-        Out(i,j)=rSum;
-        
-    end
-    
+        Out(i,j)=rSum;    
+    end  
 end
 
 %cutoff...
@@ -44,22 +38,20 @@ for i = 1:iRows
        if Out(i,j)>255
            Out(i,j)=255;
        end
-       
+       if Out(i,j)<0
+           Out(i,j)=0;
+       end
    end
 end
-        
-   
+         
  %absolute...   
 elseif strcmp(Postproc,'absolute')==1
     
  for i = 1:iRows
-   for j= 1:iCols
-      
+   for j= 1:iCols   
            Out(i,j)=abs(Out(i,j));
    end
+ end
 end
-end
-
-%figure, imshow(result), title('Filter Applied');
 
 end

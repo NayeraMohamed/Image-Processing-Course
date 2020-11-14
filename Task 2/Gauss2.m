@@ -7,4 +7,3 @@ MaskSize = (N*2) +1;
 %use Gauss1 function to generate the filter
 M=Gauss1(MaskSize,Sig);
 end
-

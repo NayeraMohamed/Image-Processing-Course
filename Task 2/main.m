@@ -1,13 +1,13 @@
-%I = imread('I.bmp');
+I = imread('Moon.bmp');
+figure, imshow(I), title('Before Filter');
 %convert image to grey scale
 %I = rgb2gray(I);
-%M = MeanMask(3, 11);
-%M = Gauss1(Size,Sig);
+%M = MeanMask(13, 5);
 %M = Gauss2(4);
-%M = LaplacianSharp();
+M = LaplacianSharp();
 %M = Sobel('H');
 %M = Sobel('V');
-%G = EdgeMagnit(I);
+%Out = EdgeMagnit(I);
 
-%Out = uint8(LinearFilter(I, M, Postproc)); //Absolute | Cutoff
-%figure, imshow(Out), title('Filter Applied');
+Out = uint8(LinearFilter(I, M, '')); %absolute | cutoff
+figure, imshow(Out), title('Filter Applied');
