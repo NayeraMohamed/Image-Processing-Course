@@ -1,59 +1,27 @@
-I = imread('1.png');
-%txt = ocr(I);
-%disp(txt);
-%disp(txt.Text(3));
+I = imread('2.1.png');
 
-%figure, imshow(I);
-%[J,rect] = imcrop(I);
-%figure, imshow(J);
-%txt = ocr(J);
-%newStr = split(txt.Text);
-%disp(txt);
-d=255-I;
-d=I;
+d = I;
 for row=1:size(I,1)
     for col=1:size(I,2)
         d(row,col,:)=255-I(row,col,:);
     end
 end
-figure, imshow(d);
-txt = ocr(d , [1,2,3,4]);
-[d,rect] = imcrop(d);
+figure,imshow(d);
+d = im2bw(d,0.1);
+ figure,imshow(d);
+ 
+ %to fill the gaps between circle
+se=strel('disk',8);
+d = imdilate(d,se);
+d = imerode(d,se);
 
-d = imresize(d, 3);
-%d = im2bw(d);
+%to extract the circle only
+se=strel('disk',50);
+d = imerode(d,se);
+d = imdilate(d,se);
+figure,imshow(d);
 
-se = strel('square', 7);
-%se = strel('square', 3);
-%d = imdilate(d, se);
-q = imerode(d, se);
-q = imdilate(q, se);
-x = abs(d-q);
-
-c = 1;
-arr = [];
-%for i = 1:size(I, 1) %rows
- %   for j = 1:size(I, 2) %columns
-  %      pixel = I(i,j);
-   %     disp(pixel);
-    %    if pixel > 0
-              
-     %   arr(c) = pixel;
-      %  c = c + 1;
-        
-       % i= i + 10;
-        %j = j + 10;
-        %end
-    %end
-%end
-%d = imclose(d, se);
-%d = imsharpen(d);
-disp(arr)
-figure, imshow(d);
-figure, imshow(q);
-
-figure, imshow(x);
-txt = ocr(x);
-newStr = split(txt.Text);
-disp(newStr);
-
+%get number of connected components, if 1 then it is a circle
+%else bar
+[x, n] = bwlabel(d);
+display(n);
