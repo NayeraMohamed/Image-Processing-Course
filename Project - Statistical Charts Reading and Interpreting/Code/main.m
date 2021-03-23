@@ -16,7 +16,7 @@ d = imdilate(d,se);
 d = imerode(d,se);
 
 %to extract the circle only
-se=strel('disk',50);
+se=strel('disk',70);
 d = imerode(d,se);
 d = imdilate(d,se);
 figure,imshow(d);
