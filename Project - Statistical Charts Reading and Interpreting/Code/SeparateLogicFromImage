@@ -1,0 +1,15 @@
+% Load the image and convert it to gray scale
+I = imread('image.jpeg');
+Igray = rgb2gray(I);
+% Detect black line
+BW = Igray < 10;
+% Detect rectangle region (inside the line)
+BW = imclearborder(~BW);
+BW = bwareafilt(BW,1);
+% Calculate bounding box
+s = regionprops(BW,'BoundingBox');
+% Crop the image
+Icropped = imcrop(I,s.BoundingBox);
+% Show the result
+figure
+imshow(Icropped)
