@@ -1,4 +1,4 @@
-function [N] = isCircle(I)
+function [N] = IsCircle(I)
 d = I;
 for row=1:size(I,1)
     for col=1:size(I,2)
