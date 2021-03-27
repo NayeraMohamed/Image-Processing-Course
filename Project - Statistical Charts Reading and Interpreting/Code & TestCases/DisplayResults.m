@@ -1,4 +1,30 @@
+function [] = DisplayResults(Image, percentages)
+%Resizing image to get clear image of text
+Image = imresize(Image,3);
 
+%Convert image to black and white 
+BW = im2bw(Image,0.9);
+
+%Get inverse of image to make background black
+inverse = abs(1-BW);
+
+%Get colors only from legend
+se=strel('square',21);
+inverse = imerode(inverse,se);
+inverse = imdilate(inverse,se);
+
+%Get text only without colors by setting colors to white
+text = Image;
+for i=1:size(inverse,1)
+    for j=1:size(inverse,2)
+        if inverse(i,j) == 1 
+            text(i,j,1) = 255;
+            text(i,j,2) = 255;
+            text(i,j,3) = 255;
+        end
+        
+    end
+end
 
 %Threshold to increase intensity of black 
 text = im2bw(text,0.5);
