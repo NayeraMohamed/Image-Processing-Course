@@ -11,7 +11,7 @@ if circle == 1
     percentages = AnalyzeCircle(I, uniqueColors, uniqueC);
 
 else %histogram
-    disp('histogram');
-    percentages = AnalyseHistogram(I);
+    disp('bar');
+    percentages = AnalyseBar(I);
 end
 DisplayResults(Legend, percentages);
