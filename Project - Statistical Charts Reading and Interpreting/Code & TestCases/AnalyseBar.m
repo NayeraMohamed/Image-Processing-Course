@@ -1,4 +1,4 @@
-function [percentage] = AnalyseHistogram(I)  
+function [percentage] = AnalyseBar(I)  
 R=I;
 BW = im2bw(R,0.95);
 
